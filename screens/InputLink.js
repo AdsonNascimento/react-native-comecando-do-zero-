@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 const InputLink = ({ navigation }) => {
   const [inputValue, setInputValue] = useState('');
@@ -13,25 +13,68 @@ const InputLink = ({ navigation }) => {
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Link For People</Text>
+    <View style={styles.container}>
+      <Image source={require('../assets/logo-forpeople.png')} style={styles.image} />
 
-      <TextInput
-        style={{
-          height: 40,
-          borderColor: 'gray',
-          borderWidth: 1,
-          marginBottom: 10,
-          padding: 5,
-          width: '80%',
-        }}
-        onChangeText={handleInputChange}
-        value={inputValue}
-      />
+      <View style={styles.containerInput}>
+        <Text>Código For People</Text>
 
-      <Button title="Submit" onPress={handleSubmit} />
+        <TextInput
+          style={styles.input}
+          onChangeText={handleInputChange}
+          value={inputValue}
+        />
+      </View>
+      
+      <TouchableOpacity style={styles.submit} onPress={handleSubmit}>
+        <Text style={styles.submitText}>Submit</Text>
+      </TouchableOpacity>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    gap: 70,
+    paddingTop: 150,
+    backgroundColor: '#F5F5F5'
+  },
+
+  image: {
+    width: 255,
+    height: 100,
+  },
+
+  containerInput: {
+    gap: 20,
+    width: '80%'
+  },
+
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+    width: '100%',
+    borderRadius: 999
+  },
+
+  submit: {
+    backgroundColor: '#FFCD00',
+    padding: 10,
+    width: 200,
+    alignItems: 'center',
+    borderRadius: 5,
+  },
+
+  submitText: {
+    color: 'black',
+    fontWeight: 'bold'
+  }
+});
 
 export default InputLink;
